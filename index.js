@@ -2,11 +2,21 @@
 const express = require('express')
 const app = express()
 const cors = require('cors');
+const admin = require("firebase-admin");
 require('dotenv').config()
 const { MongoClient } = require('mongodb');
 const ObjectId = require('mongodb').ObjectId;
 
 const port = process.env.PORT || 5000;
+
+
+
+
+const serviceAccount = require('./bicycle-store-firebase-adminsdk.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
 app.use(cors());
 app.use(express.json());
